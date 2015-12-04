@@ -1,0 +1,14 @@
+<?php echo flash() ?>
+<div class="scoreboardReport">
+	<ul>
+		<li class="last">
+			<h3>Total number of Competitions</h3>
+			<p><?php echo $this->evalEntriesNum() ?></p>
+			<p class="description">
+				&nbsp;
+			</p>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<?php $this->listRender(array('list_control_panel'=>'list_toolbar')) ?>

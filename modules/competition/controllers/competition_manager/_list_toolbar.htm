@@ -1,0 +1,9 @@
+<div class="toolbar">
+	<?php echo Phpr_Form::openTag() ?>
+		<?php echo backend_ctr_button('Refresh', 'refresh', array('href'=>'#', 'onclick'=>"return refresh_list()")) ?>
+		<?php echo backend_ctr_button('Add Competition', 'new_document', array('href'=>url('/competition/manager/create'))) ?>
+		<div class="separator">&nbsp;</div>
+		<?php echo backend_ctr_button('Delete', 'delete_document', array('href'=>'#', 'onclick'=>"return delete_selected()")) ?>
+		<div class="clear"></div>
+	</form>
+</div>

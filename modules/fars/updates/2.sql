@@ -1,0 +1,1 @@
+alter table `shop_customers` add column x_userlevel int(11);
