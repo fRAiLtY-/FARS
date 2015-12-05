@@ -29,7 +29,7 @@
 			<nav>
 				<div class="row">
 					<div class="col-md-4 col-xs-11 logo">
-						<a href="#"><img src="<?php echo theme_resource_url('images/fars_logo.jpg'); ?>" height="70" alt="Fedaration of Artistic Roller Skating" /></a>
+						<a href="/"><img src="<?php echo theme_resource_url('images/fars_logo.png'); ?>" height="70" alt="Fedaration of Artistic Roller Skating" /></a>
 					</div>
 					<div class="col-md-6 col-xs-1">
 						<ul class="nav">
