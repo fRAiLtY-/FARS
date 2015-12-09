@@ -9,4 +9,3 @@
 	)); ?>
 
 	<link rel="shortcut icon" href="<?php echo site_url('favicon.ico'); ?>"> 
-	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,700,600' rel='stylesheet' type='text/css'>

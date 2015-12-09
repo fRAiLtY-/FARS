@@ -4,11 +4,10 @@
 	<?php $this->render_partial('layout:head'); ?>
 </head>
 <body data-page="<?php echo $this->page->directory_name ?>">
-	
-	<div class="container container-middle">
 		
-		<section class="top">
-			<div class="bar">
+	<section class="top">
+		<div class="bar">
+			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
 						<ul class="bar-links">
@@ -17,6 +16,7 @@
 							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 							<?php if($this->customer): ?>
+								<li><a href="/members">My Account</a></li>
 								<li><a href="/members/logout">Logout</a></li>
 							<?php else: ?>
 								<li><a href="/members/login">Login</a></li>
@@ -26,10 +26,12 @@
 					</div>
 				</div>
 			</div>
-			<nav>
+		</div>
+		<nav>
+			<div class="container">
 				<div class="row">
 					<div class="col-md-4 col-xs-11 logo">
-						<a href="/"><img src="<?php echo theme_resource_url('images/fars_logo.png'); ?>" height="70" alt="Fedaration of Artistic Roller Skating" /></a>
+						<a href="<?php echo site_url('/') ?>"><img src="<?php echo theme_resource_url('images/fars_logo.png'); ?>" height="70" alt="Fedaration of Artistic Roller Skating" /></a>
 					</div>
 					<div class="col-md-6 col-xs-1">
 						<ul class="nav">
@@ -50,5 +52,6 @@
 						</div>
 					</div> 
 				</div>
-			</nav>
-		</section>
+			</div>
+		</nav>
+	</section>
