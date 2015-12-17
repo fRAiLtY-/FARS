@@ -1,0 +1,9 @@
+<? Phpr_View::beginBlock('head') ?>
+	<script type="text/javascript" src="/modules/competitions/resources/javascript/competitions.js?<?= module_build('competition') ?>"></script>
+<? Phpr_View::endBlock() ?>
+
+<? Phpr_View::beginBlock('view') ?>
+	<div id="competition_page_content">
+		<? $this->renderPartial('categories_page_content') ?>
+	</div>
+<? Phpr_View::endBlock() ?>

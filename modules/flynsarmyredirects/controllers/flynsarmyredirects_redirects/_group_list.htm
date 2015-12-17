@@ -1,0 +1,46 @@
+<?php
+	$attributes = FlynsarmyRedirects_Group::create()->order('sort_order')->find_all();
+?>
+
+<table id="group_list_table" class="simpleList">
+	<thead>
+		<tr>
+		<?php if ($attributes->count): ?>
+			<th class="checkbox">
+				<input type="checkbox" class="list_head_cb" value="1" onclick="$(this).findParent('table').getElements('tbody  input.list_cb').each(function(cb){cb.cb_update_state(this.checked);}, this)">
+			</th>
+		<?php endif ?>
+			<th>Name</th>
+			<th>Short Description</th>
+			<th>Date</th>
+			<th>Location</th>
+			<th>Redirects</th>
+			<th class="<?php echo !$attributes->count ? 'last' : null ?>">Hits</th>
+		</tr>
+	</thead>
+
+	<tbody id="group_list_body<?php echo $this->formGetEditSessionKey() ?>">
+		<?php if (!$attributes->count): ?>
+			<tr class="noData">
+				<td colspan="6" class="last">There are no competitions.</td>
+			</tr>
+		<?php else: ?>
+		<?php foreach ($attributes as $attribute):
+			$parent_session_key = $this->formGetEditSessionKey();
+			$url = $this->list_record_url.$attribute->id.'?'.uniqid();
+		?>
+			<tr class="<?php echo Backend_Html::zebra('group') ?>">
+				<td class="checkbox">
+					<input name="list_ids[]" class="list_cb" type="checkbox" value="<?php echo $attribute->get_primary_key_value() ?>" />
+				</td>
+				<td class="link"><a href="<?php echo $url ?>"><?php echo h($attribute->displayField('name', 'list')) ?></a></td>
+				<td class="link"><a href="<?php echo $url ?>"><?php echo h($attribute->displayField('short_description', 'list')) ?></a></td>
+				<td class="link"><a href="<?php echo $url ?>"><?php echo $attribute->date->format('%e %b %Y'); ?></a></td>
+				<td class="link"><a href="<?php echo $url ?>"><?php echo Shop_CountryState::create()->find_by_id($attribute->location_id)->name; ?></a></td>
+				<td class="link"><a href="<?php echo $url ?>"><?php echo $attribute->redirect_count ?></a></td>
+				<td class="link"><a href="<?php echo $url ?>"><?php echo $attribute->hit_count ?></a></td>
+			</tr>
+		<?php endforeach ?>
+		<?php endif ?>
+	</tbody>
+</table>

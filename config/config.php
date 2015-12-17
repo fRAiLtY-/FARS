@@ -53,7 +53,7 @@
 	 * Language
 	 */
 	
-	$CONFIG['LANGUAGE'] = 'en';
+	$CONFIG['LANGUAGE'] = 'en_gb';
 
 	/*
 	 * ImageMagick

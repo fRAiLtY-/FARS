@@ -5,6 +5,7 @@
 	<?php echo $this->css_combine(array(
 		'@css/bootstrap.min.css',
 		'@css/font-awesome.min.css',
+		'@css/fonts.css',
 		'@css/fars.css'
 	)); ?>
 

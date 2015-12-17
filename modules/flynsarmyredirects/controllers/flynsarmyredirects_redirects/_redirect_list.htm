@@ -1,0 +1,52 @@
+<?
+	$attributes = $form_model->list_related_records_deferred('redirects', $this->formGetEditSessionKey());
+?>
+
+<table id="category_list_table" class="simpleList">
+	<thead>
+		<tr>
+			<? if ($attributes->count): ?>
+			<th class="checkbox">
+				<input type="checkbox" class="list_head_cb" value="1" onclick="$(this).findParent('table').getElements('tbody  input.list_cb').each(function(cb){cb.cb_update_state(this.checked);}, this)">
+			</th>
+			<th class="iconCell">&nbsp;</th>
+			<? endif ?>
+			<th>From URL</th>
+			<th>To URL</th>
+			<th>Match Type</th>
+			<th>Redirect</th>
+			<th class="last">Hits</th>
+		</tr>
+	</thead>
+
+	<tbody id="category_list_body<?= $this->formGetEditSessionKey() ?>">
+		<? if (!$attributes->count): ?>
+			<tr class="noData">
+				<td colspan="5" class="last">There are no categories.</td>
+			</tr>
+		<? else: ?>
+			<? foreach ($attributes as $attribute):
+				$parent_session_key = $this->formGetEditSessionKey();
+				$class = $attribute->is_enabled ? '' : 'disabled';
+				$onClick = "$('model_id{$parent_session_key}').value = '{$attribute->id}'; new PopupForm('onLoadRedirectForm', {ajaxFields: $('model_id{$parent_session_key}').getForm()}); return false;";
+			?>
+			<tr attribute_id="<?= $attribute->id ?>" class="<?= Backend_Html::zebra('redirect') ?>">
+				<td class="checkbox <?= $class ?>">
+					<input name="list_ids[]" class="list_cb" type="checkbox" value="<?= $attribute->get_primary_key_value() ?>" />
+				</td>
+				<td class="iconCell <?= $class ?>">
+					<a href="#" class="row_drag_handle sort_handle" onclick="return false" title="Reorder options">Reorder options</a>
+					<input class="option_id" value="<?= $attribute->id ?>" type="hidden"/>
+					<input class="option_order" value="<?= $attribute->sort_order ?>" type="hidden"/>
+				</td>
+
+				<td class="link from_url <?= $class ?>" onclick="<?= $onClick ?>"><a href="#" onclick="<?= $onClick ?>"><?= h($attribute->displayField('from_url', 'list')) ?></a></td>
+				<td class="link to_url <?= $class ?>" onclick="<?= $onClick ?>"><a href="#" onclick="<?= $onClick ?>"><?= h($attribute->displayField('to_url', 'list')) ?></a></td>
+				<td class="link <?= $class ?>" onclick="<?= $onClick ?>"><a href="#" onclick="<?= $onClick ?>"><?= h($attribute->displayField('match_type', 'list')) ?></a></td>
+				<td class="link <?= $class ?>" onclick="<?= $onClick ?>"><a href="#" onclick="<?= $onClick ?>"><?= h($attribute->get_redirect_code_options($attribute->redirect_code)); ?></a></td>
+				<td class="link last <?= $class ?>" onclick="<?= $onClick ?>"><a href="#" onclick="<?= $onClick ?>"><?= h($attribute->displayField('hits', 'list')) ?></a></td>
+			</tr>
+			<? endforeach ?>
+		<? endif ?>
+	</tbody>
+</table>

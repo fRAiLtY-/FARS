@@ -1,0 +1,47 @@
+<?= flash() ?>
+
+<?php //$this->listRender(array('list_control_panel'=>'control_panel')) ?>
+
+<? $this->renderPartial('control_panel') ?>
+
+<?= Phpr_Form::openTag(array('id'=>'form_element')) ?>
+	<div id="group_list<?= $this->formGetEditSessionKey() ?>" class="clear relative">
+		<? $this->renderPartial('group_list') ?>
+	</div>
+<?= Phpr_Form::close_tag(); ?>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		make_groups_sortable("<?= $this->formGetEditSessionKey() ?>");
+	});
+
+	function updateGroupList(session_key)
+	{
+		cancelPopup();
+		jQuery(this).tipsy('hide');
+
+		$('group_list'+session_key).getForm().sendPhpr(
+			'index_onUpdateGroupList',
+			{
+				update: 'group_list'+session_key,
+				loadIndicator: {
+					show: true,
+					element: 'group_list'+session_key,
+					hideOnSuccess: true,
+					injectInElement: true,
+					src: 'phproad/resources/images/form_load_30x30.gif'
+				},
+				onSuccess: function(){
+					make_groups_sortable(session_key);
+					jQuery('#group_list'+session_key).show();
+				}
+			}
+		)
+	}
+
+	function make_groups_sortable(session_key)
+	{
+		if ($('group_list_body'+session_key))
+			$('group_list_body'+session_key).makeListSortable('index_onSetGroupOrders', 'option_order', 'option_id', 'sort_handle');
+	}
+</script>

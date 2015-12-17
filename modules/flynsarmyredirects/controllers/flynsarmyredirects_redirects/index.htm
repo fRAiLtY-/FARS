@@ -1,0 +1,10 @@
+<? Phpr_View::beginBlock("head") ?>
+	<link rel="stylesheet" href="modules/flynsarmyredirects/resources/css/simpleList.css"/>
+	<script type="text/javascript" src="modules/flynsarmyredirects/resources/javascript/redirects.js"></script>
+<? Phpr_View::endBlock() ?>
+
+<? Phpr_View::beginBlock("view") ?>
+	<div id="templates_page_content">
+		<? $this->renderPartial('templates_page_content') ?>
+	</div>
+<? Phpr_View::endBlock() ?>

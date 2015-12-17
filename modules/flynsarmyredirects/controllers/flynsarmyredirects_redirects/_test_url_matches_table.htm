@@ -1,0 +1,29 @@
+<table class="simpleList">
+	<thead>
+		<tr>
+			<th>Redirect Group</th>
+			<th>From URL</th>
+			<th>To URL</th>
+			<th class='last'>Code</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<? if ( !sizeof($redirects) ): ?>
+			<tr class="noData">
+				<td colspan="4" class="last">There are no redirects to display.</td>
+			</tr>
+		<? else: ?>
+			<? foreach ($redirects as $redirect):
+				$url = $this->list_record_url.$redirect['group_id'].'?'.uniqid().'#'.$redirect['id'];
+			?>
+				<tr class="<?= Backend_Html::zebra('url_match_table') ?>">
+					<td class="current link"><a href="<?= $url ?>"><?= $redirect['group_name'] ?></a></td>
+					<td class="link"><a href="<?= $url ?>"><?= $redirect['from_url'] ?></a></td>
+					<td class="link"><a href="<?= $url ?>"><?= $redirect['to_url'] ?></a></td>
+					<td class="link last"><a href="<?= $url ?>"><?= $redirect['redirect_code'] ?></a></td>
+				</tr>
+			<? endforeach ?>
+		<? endif ?>
+	</tbody>
+</table>

@@ -1,0 +1,10 @@
+Sort Order,Is Enabled?,Match Type,Redirect Code,From URL,To URL,Hits
+1,1,Matches exactly,Permanent,http://degreesn.localhost.com/1,http://degreesn.localhost.com/go/1,0
+2,1,Starts with,Permanent,http://degreesn.localhost.com/2,http://degreesn.localhost.com/go/2,20
+3,0,Ends with,Permanent,http://degreesn.localhost.com/3,http://degreesn.localhost.com/go/3,287
+4,1,Starts with,Permanent,http://degreesn.localhost.com/3,http://degreesn.localhost.com/go/3,398
+5,0,Matches exactly,Temporary,http://degreesn.localhost.com/4,http://degreesn.localhost.com/go/4,75
+6,0,Matches exactly,Permanent,http://degreesn.localhost.com/5,http://degreesn.localhost.com/go/5,9
+7,1,Matches exactly,Temporary,http://degreesn.localhost.com/6,http://degreesn.localhost.com/go/6,0
+8,1,Matches exactly,Temporary,http://degreesn.localhost.com/7,http://degreesn.localhost.com/go/7,0
+9,0,Ends with,Temporary,http://degreesn.localhost.com/8,http://degreesn.localhost.com/go/8,4

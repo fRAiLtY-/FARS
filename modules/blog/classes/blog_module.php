@@ -37,7 +37,7 @@
 
 			if ($first_tab)
 			{
-				$tab = $tabCollection->tab('blog', 'News', $first_tab, 60);
+				$tab = $tabCollection->tab('news', 'News', $first_tab, 60);
 				foreach ($tabs as $tab_id=>$tab_info)
 				{
 					if ($tab_info[3])

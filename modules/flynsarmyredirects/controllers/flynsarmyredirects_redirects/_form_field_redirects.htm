@@ -1,0 +1,54 @@
+<li>
+	<div class="toolbar">
+		<?= backend_ctr_button('Add redirect', 'new_document', array('href'=>'#', 'onclick'=>"$('model_id". $this->formGetEditSessionKey() ."').value = ''; new PopupForm('onLoadRedirectForm', {ajaxFields: $('redirect_list". $this->formGetEditSessionKey() ."').getForm()}); return false;")) ?>
+		<?= backend_ctr_button('Delete selected', 'delete_document', array('href'=>'#', 'onclick'=>"return delete_selected_redirects('".$this->formGetEditSessionKey()."')")) ?>
+		<div class="separator">&nbsp;</div>
+		<?= backend_ctr_button('Enable Selected', 'enable', array('href'=>'#', 'onclick'=>"return set_redirects_enabled('".$this->formGetEditSessionKey()."', 1)")) ?>
+		<?= backend_ctr_button('Disable Selected', 'disable', array('href'=>'#', 'onclick'=>"return set_redirects_enabled('".$this->formGetEditSessionKey()."', 0)")) ?>
+
+		<div class="clear"></div>
+	</div>
+
+
+	<div id="redirect_list<?= $this->formGetEditSessionKey() ?>" class="clear relative">
+		<? $this->renderPartial('redirect_list') ?>
+	</div>
+
+	<input type="hidden" name="model_id" id="model_id<?= $this->formGetEditSessionKey() ?>" value=""/>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			make_redirects_sortable("<?= $this->formGetEditSessionKey() ?>");
+		});
+
+		function updateRedirectList(session_key)
+		{
+			cancelPopup();
+			jQuery(this).tipsy('hide');
+
+			$('redirect_list'+session_key).getForm().sendPhpr(
+				'onUpdateRedirectList',
+				{
+					update: 'redirect_list'+session_key,
+					loadIndicator: {
+						show: true,
+						element: 'redirect_list'+session_key,
+						hideOnSuccess: true,
+						injectInElement: true,
+						src: 'phproad/resources/images/form_load_30x30.gif'
+					},
+					onSuccess: function(){
+						make_redirects_sortable(session_key);
+						jQuery('#redirect_list'+session_key).show();
+					}
+				}
+			)
+		}
+
+		function make_redirects_sortable(session_key)
+		{
+			if ($('redirect_list_body'+session_key))
+				$('redirect_list_body'+session_key).makeListSortable('onSetRedirectOrders', 'option_order', 'option_id', 'sort_handle');
+		}
+	</script>
+</li>

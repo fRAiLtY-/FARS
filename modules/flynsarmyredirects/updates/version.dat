@@ -1,0 +1,11 @@
+#1 Module initialization
+#2 Minor fixes
+#3 No www redirects when browsing via command line
+#4 Bug fix with UTF-8 querystrings
+#5 Redirect Code import fields now work correctly
+#6 Added modal to see which redirects will be triggered for a given URL, you can now disable groups/redirects
+#7 Added options to automatically generate redirects when changing a product, category, page, blog post or blog category URL.
+#8 Added debug logging (disabled by default)
+#9 Minor bug fix when enabling from the redirect list
+#10 Don't require :443 in HTTPS redirects
+#11 Bug fix with automatic redirect generation

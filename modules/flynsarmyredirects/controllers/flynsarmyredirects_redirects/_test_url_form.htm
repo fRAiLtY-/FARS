@@ -1,0 +1,31 @@
+<div id="item_form">
+	<h2>Test a URL</h2>
+	<div class="content">
+		<div class="form850">
+			<?= Phpr_Form::openTag() ?>
+				<? if (!isset($fatalError)): ?>
+					<? $this->formRender($form_model) ?>
+
+					<div id="matching_urls"></div>
+
+					<?= backend_ajax_button('Test', 'index_onTestURL', array('class'=>'default'), "
+						loadIndicator: {show: false},
+						onBeforePost: function() {
+							jQuery('#form_flash, #matching_urls').html('');
+							LightLoadingIndicator.show('Loading...');
+						},
+						onComplete: LightLoadingIndicator.hide,
+						update: 'matching_urls'
+					") ?>
+					<?= backend_button('Close', array('onclick'=>'return cancelPopup()')) ?>
+
+					<div class="clear"></div>
+				<? else: ?>
+					<?= flash() ?>
+					<?= backend_button('Cancel', array('onclick'=>'return cancelPopup()')) ?>
+					<div class="clear"></div>
+				<? endif ?>
+			</form>
+		</div>
+	</div>
+</div>
